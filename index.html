@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="An interactive birthday experience.">
+  <title>Birthday Experience</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Ambient visual layers shared by every future page. -->
+  <div class="site-atmosphere" aria-hidden="true">
+    <div class="moon"></div>
+    <div class="moon-haze"></div>
+    <div class="stars" id="stars"></div>
+    <div class="fireflies" id="fireflies"></div>
+    <div class="floating-particles" id="floating-particles"></div>
+  </div>
+
+  <!-- Global controls remain available on every page. -->
+  <header class="site-header">
+    <button class="music-toggle glass-panel" id="music-toggle" type="button" aria-label="Music is available after unlocking" aria-pressed="false" disabled>
+      <span class="music-icon" aria-hidden="true">♫</span>
+      <span class="music-label">Music off</span>
+    </button>
+  </header>
+
+  <!-- Page 1: BIRTHDAY EXPERIENCE -->
+  <main class="app" id="app" aria-live="polite">
+        <!-- Page 1: Welcome -->
+    <section class="app-page welcome-page is-active" id="welcome-page" aria-labelledby="welcome-title">
+      <div class="welcome-card glass-panel">
+        <p class="page-kicker">A Special Day</p>
+
+        <h1 id="welcome-title" tabindex="-1">
+          Happy Birthday<br>
+          <em>Harshitha</em>
+        </h1>
+
+        <p class="welcome-subtitle">
+          I made something special just for you...
+        </p>
+
+        <button
+          class="hero-continue"
+          type="button"
+          data-next="question-page">
+          Begin <span aria-hidden="true">→</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Page 2: Yes / No -->
+    <section class="app-page question-page" id="question-page" hidden aria-labelledby="question-title">
+
+      <div class="question-card glass-panel">
+
+        <p class="page-kicker">
+          Before we start...
+        </p>
+
+        <h2 id="question-title" tabindex="-1">
+          Can I steal<br>
+          a few minutes<br>
+          of your day? 💜
+        </h2>
+
+        <p class="question-message" id="question-message">
+          I promise it'll be worth it.
+        </p>
+
+        <div class="question-buttons">
+
+          <button
+            class="question-btn yes-btn"
+            id="yes-btn"
+            type="button">
+            Yes 💜
+          </button>
+
+          <button
+            class="question-btn no-btn"
+            id="no-btn"
+            type="button">
+            No 🤍
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+    <section class="app-page password-page" id="password-page" aria-labelledby="password-title" hidden>
+      <div class="password-card glass-panel">
+        <span class="card-sparkle card-sparkle--top" aria-hidden="true">✦</span>
+        <p class="page-kicker">A Little Secret</p>
+        <h1 id="password-title" tabindex="-1">A little surprise<br>awaits...</h1>
+        <p class="password-subtitle">You already know the password… take your time 😉</p>
+
+        <form class="password-form" id="password-form" novalidate>
+          <label class="sr-only" for="password-input">Enter the password</label>
+          <div class="password-field">
+            <span class="password-field__icon" aria-hidden="true">⌾</span>
+            <input id="password-input" name="password" type="password" autocomplete="off" placeholder="Enter your key" required>
+          </div>
+          <p class="password-message" id="password-message" aria-live="polite"></p>
+          <button class="unlock-button" type="submit">Unlock <span aria-hidden="true">→</span></button>
+        </form>
+        <span class="card-sparkle card-sparkle--bottom" aria-hidden="true">✧</span>
+      </div>
+    </section>
+
+    <!-- Page 2: Loading story -->
+    <section class="app-page loading-page" id="loading-page" aria-labelledby="loading-quote" hidden>
+      <div class="loading-background" aria-hidden="true"></div>
+      <div class="loading-fog loading-fog--back" aria-hidden="true"></div>
+      <div class="loading-fog loading-fog--front" aria-hidden="true"></div>
+      <div class="lanterns" aria-hidden="true">
+        <span class="lantern lantern--one"></span>
+        <span class="lantern lantern--two"></span>
+        <span class="lantern lantern--three"></span>
+      </div>
+      <div class="walking-silhouette" id="walking-silhouette" aria-hidden="true">
+        
+        <span class="silhouette-light"></span>
+      </div>
+      <div class="loading-story-content">
+        <p class="loading-quote" id="loading-quote">“Every beautiful story begins with a beautiful memory</p>
+        <div class="story-progress" role="progressbar" aria-label="Preparing your story" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <span id="story-progress-fill"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Page 3: Hero birthday page -->
+    <section class="app-page hero-page" id="hero-page" aria-labelledby="hero-title" hidden>
+      <div class="hero-aura hero-aura--one" aria-hidden="true"></div>
+      <div class="hero-aura hero-aura--two" aria-hidden="true"></div>
+      <div class="hero-petals" aria-hidden="true">
+        <span>✿</span><span>❀</span><span>✦</span><span>❀</span><span>✿</span><span>✦</span>
+      </div>
+      
+      <div class="hero-content">
+        <p class="hero-kicker">To the most beautiful soul</p>
+        <h1 id="hero-title" tabindex="-1">Happy Birthday<br><em>Harshitha</em></h1>
+        <p class="hero-subtitle">I know you like handwritten letters, so I thought I'd write one for you… but trust me, you don't want to see my handwriting 😂 So I made this instead</p>
+        <button class="hero-continue" type="button" data-next="troublemaker-page">Continue <span aria-hidden="true">→</span></button>
+      </div>
+    </section>
+
+    <!-- Page 4: Tiny Troublemaker -->
+    <section class="app-page troublemaker-page" id="troublemaker-page" aria-labelledby="troublemaker-title" hidden>
+      <div class="troublemaker-content">
+        <p class="troublemaker-kicker">A tiny memory, preserved forever</p>
+        <h2 id="troublemaker-title" tabindex="-1">Tiny Troublemaker <span aria-hidden="true">🐡</span></h2>
+        <p class="photo-prompt" id="photo-prompt">Choose your favourite picture.</p>
+        <div class="polaroid-gallery" id="polaroid-gallery">
+          <button class="polaroid" type="button" aria-label="Choose childhood photo one">
+            <img src="assets/images/childhood1.jpeg" alt="Childhood memory one"><span></span>
+          </button>
+          <button class="polaroid" type="button" aria-label="Choose childhood photo two">
+            <img src="assets/images/img2.jpeg" alt="Childhood memory two"><span></span>
+          </button>
+          <button class="polaroid" type="button" aria-label="Choose childhood photo three">
+            <img src="assets/images/img3.jpeg" alt="Childhood memory three"><span></span>
+          </button>
+        </div>
+        <div class="troublemaker-reveal" id="troublemaker-reveal" hidden aria-live="polite">
+          <p>“If I didn't compliment this kid<br>God would've sent me to hell 😂</p>
+          <button class="hero-continue" type="button" data-next="letter-page">Continue <span aria-hidden="true">→</span></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Page 5: Letter -->
+    <section class="app-page letter-page" id="letter-page" aria-labelledby="letter-title" hidden>
+      <div class="letter-content">
+        <p class="letter-kicker">A few words, from the heart</p>
+        <h2 id="letter-title" tabindex="-1">For you</h2>
+        <p class="letter-instruction" id="letter-instruction">Tap the envelope to open your letter.</p>
+        <button class="letter-envelope" id="letter-envelope" type="button" aria-label="Open your birthday letter" aria-expanded="false">
+          <span class="envelope-flap"></span>
+          <span class="envelope-front envelope-front--left"></span>
+          <span class="envelope-front envelope-front--right"></span>
+          <span class="envelope-seal" aria-hidden="true">♥</span>
+          <span class="letter-paper" aria-hidden="true"><span id="typed-letter"></span></span>
+        </button>
+        <button class="hero-continue letter-continue" id="letter-continue" type="button" data-next="gallery-page" hidden>Continue <span aria-hidden="true">→</span></button>
+      </div>
+    </section>
+
+    <!-- Page 6: Memory gallery -->
+     <section id="gallery-page" class="app-page">
+  <div class="gallery-content">
+
+    <p class="gallery-kicker">One last test 😂</p>
+
+    <h2>Looks like I'm still stealing your time 😂</h2>
+
+    <div
+      id="memory-carousel"
+      class="memory-carousel"
+      tabindex="0"
+      aria-label="Harshitha personality quiz"
+    >
+
+      <div class="carousel-viewport">
+
+        <!-- Question 1 -->
+        <article class="memory-card is-current" data-question="1">
+          <div class="funny-number">01</div>
+
+          <h3>What is Harshitha most likely to do?</h3>
+
+          <div class="quiz-options">
+            <button class="quiz-option" data-answer="innocent">
+              😇 Act innocent
+            </button>
+
+            <button class="quiz-option" data-answer="chaos">
+              😈 Create chaos
+            </button>
+          </div>
+
+          <p class="quiz-result"></p>
+        </article>
+
+
+        <!-- Question 2 -->
+        <article class="memory-card" data-question="2">
+          <div class="funny-number">02</div>
+
+          <h3>What kind of memory does Harshitha have?</h3>
+
+          <div class="quiz-options">
+            <button class="quiz-option" data-answer="goldfish">
+              🐠 Goldfish memory
+            </button>
+
+            <button class="quiz-option" data-answer="perfect">
+              🧠 Perfect memory
+            </button>
+          </div>
+
+          <p class="quiz-result"></p>
+        </article>
+
+
+        <!-- Question 3 -->
+        <article class="memory-card" data-question="3">
+          <div class="funny-number">03</div>
+
+          <h3>What's Harshitha's relationship with Sastra?</h3>
+
+          <div class="quiz-options">
+            <button class="quiz-option" data-answer="love">
+              ❤️ Loves Sastra
+            </button>
+
+            <button class="quiz-option" data-answer="hate">
+              💀 Hates Sastra
+            </button>
+          </div>
+
+          <p class="quiz-result"></p>
+        </article>
+
+
+        <!-- Question 4 -->
+        <article class="memory-card" data-question="4">
+          <div class="funny-number">04</div>
+
+          <h3>What does Harshitha love the most?</h3>
+
+          <div class="quiz-options">
+            <button class="quiz-option" data-answer="briyani">
+              🍛 Briyani
+            </button>
+
+            <button class="quiz-option" data-answer="everything">
+              😌 Everything
+            </button>
+          </div>
+
+          <p class="quiz-result"></p>
+        </article>
+
+      </div>
+
+
+      <!-- Controls -->
+      <div class="carousel-controls">
+
+        <button
+          id="gallery-previous"
+          class="carousel-arrow"
+          type="button"
+          aria-label="Previous question"
+        >
+          ←
+        </button>
+
+        <div
+          id="carousel-dots"
+          class="carousel-dots"
+          aria-label="Quiz questions"
+        ></div>
+
+        <button
+          id="gallery-next"
+          class="carousel-arrow"
+          type="button"
+          aria-label="Next question"
+        >
+          →
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+    <!-- Page 7: Final ending -->
+    <section class="app-page ending-page" id="ending-page" aria-labelledby="ending-title" hidden>
+      <div class="ending-fog ending-fog--one" aria-hidden="true"></div>
+      <div class="ending-fog ending-fog--two" aria-hidden="true"></div>
+      <div class="ending-glow" aria-hidden="true"></div>
+      <div class="ending-content">
+        <span class="ending-sparkle" aria-hidden="true">✦</span>
+        <p>Thank you for spending a little time here.</p>
+        <h2 id="ending-title" tabindex="-1">Happy Birthday <span aria-hidden="true">♥</span><br><em>Harshitha</em></h2>
+      </div>
+    </section>
+  </main>
+
+  <!-- Add assets/music/bg.mp3 when music is ready. -->
+  <audio id="background-music" loop preload="none">
+    <source src="assets/music/bg.mp3" type="audio/mpeg">
+  </audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
