@@ -776,7 +776,7 @@ function initializeFunnyQuiz() {
           const correctComments = {
 
             chaos:
-              "😂 Obviously. You know yourself too well.",
+              "😂 Obviously. You know yourself well.",
 
             goldfish:
               "😂 At least you know yourself.",
@@ -808,10 +808,10 @@ function initializeFunnyQuiz() {
               "Kondruven unna 😭 Olunga vera option choose pannu.",
 
             love:
-              "😭 Since when?? Someone needs to check on you.",
+              "😭 Since when?? ",
 
             everything:
-              "😂 Nice answer… but we both know biryani wins."
+              "😂 Nice answer… but we both know biryani ."
 
           };
 
